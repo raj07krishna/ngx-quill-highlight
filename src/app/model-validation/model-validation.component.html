@@ -1,0 +1,29 @@
+<ng-container *ngIf="formGroup">
+  <form [formGroup]="formGroup">
+    Required
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Label mat-quill</mat-label>
+      <mat-quill
+        matInput
+        name="editor"
+        formControlName="matControl"
+        format="html"
+        [required]="true"
+        (onBlur)="onBlurFunC($event)"
+      ></mat-quill>
+      <mat-error *ngIf="formGroup.controls.matControl.hasError('required')">
+        Required
+      </mat-error>
+      <mat-hint>Just write :)</mat-hint>
+    </mat-form-field>
+  </form>
+
+  <div>
+    Presentation in HTML Material Quill
+    <div
+      style="width: 100%"
+      class="ql-editor"
+      [innerHTML]="byPassHTML(formGroup.get('matControl').value)"
+    ></div>
+  </div>
+</ng-container>
